@@ -19,7 +19,8 @@ public class CategoryController {
     CategoryService categoryService;
 
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
-    public @ResponseBody
+    public
+    @ResponseBody
     ResponseEntity<?> getAllCategories() {
         List<Category> categories = categoryService.getAll();
 
@@ -27,14 +28,16 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/categories", method = RequestMethod.POST)
-    public @ResponseBody
+    public
+    @ResponseBody
     ResponseEntity<?> add(@RequestBody Category category) {
         Category createdCategory = categoryService.add(category);
         return ResponseEntity.ok(createdCategory);
     }
 
     @RequestMapping(value = "/categories/{id}", method = RequestMethod.GET)
-    public @ResponseBody
+    public
+    @ResponseBody
     ResponseEntity<?> getCategory(@PathVariable Long id) throws NotFoundException {
         Category category = categoryService.getById(id);
         if (category == null) {

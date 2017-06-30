@@ -1,7 +1,7 @@
 package com.parionspotes.api.service;
 
-import com.parionspotes.api.repository.ArticleRepository;
 import com.parionspotes.api.model.Article;
+import com.parionspotes.api.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +24,11 @@ public class ArticleService {
         return articleRepository.findAllByOrderByPublicationDateDesc();
     }
 
-    public Article add(Article article){
+    public Article add(Article article) {
         return articleRepository.save(article);
     }
 
-    public Article getById(Long id){
+    public Article getById(Long id) {
         return articleRepository.findOne(id);
     }
 }

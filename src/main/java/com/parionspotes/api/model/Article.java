@@ -35,11 +35,12 @@ public class Article implements Serializable {
     private String content;
 
     @NotNull
-    private Sport sport;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    private Category category;
+    private Illustration illustration;
 
     public Long getId() {
         return id;
@@ -73,14 +74,6 @@ public class Article implements Serializable {
         this.content = content;
     }
 
-    public Sport getSport() {
-        return sport;
-    }
-
-    public void setSport(Sport sport) {
-        this.sport = sport;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -97,10 +90,11 @@ public class Article implements Serializable {
         this.category = category;
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Customer[id=%d, title='%s', publicationDate='%s', author='%s', content='%s', sport='%s']",
-                id, title, publicationDate, author, content.substring(0, 500), sport);
+    public Illustration getIllustration() {
+        return illustration;
+    }
+
+    public void setIllustration(Illustration illustration) {
+        this.illustration = illustration;
     }
 }

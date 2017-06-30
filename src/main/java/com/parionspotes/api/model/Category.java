@@ -22,6 +22,9 @@ public class Category implements Serializable {
     @NotNull
     private String name;
 
+    @NotNull
+    private Sport sport;
+
     public Long getId() {
         return id;
     }
@@ -38,10 +41,11 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Category[id=%d, name='%s']",
-                id, name);
+    public Sport getSport() {
+        return sport;
+    }
+
+    public void setSport(Sport sport) {
+        this.sport = sport;
     }
 }

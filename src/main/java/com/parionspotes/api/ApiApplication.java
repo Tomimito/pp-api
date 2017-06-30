@@ -9,10 +9,10 @@ import org.springframework.web.servlet.DispatcherServlet;
 @SpringBootApplication
 public class ApiApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(ApiApplication.class, args);
+    public static void main(String[] args) {
+        ApplicationContext ctx = SpringApplication.run(ApiApplication.class, args);
 
-		DispatcherServlet dispatcherServlet = (DispatcherServlet)ctx.getBean("dispatcherServlet");
-		dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);
-	}
+        DispatcherServlet dispatcherServlet = (DispatcherServlet) ctx.getBean("dispatcherServlet");
+        dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);
+    }
 }
