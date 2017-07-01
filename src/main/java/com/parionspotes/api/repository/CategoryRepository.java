@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface CategoryRepository extends CrudRepository<Category, Long> {
     List<Category> findAll();
+    Category findOneById(Long id);
+    Integer removeById(Long id);
 }

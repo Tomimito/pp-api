@@ -10,4 +10,8 @@ import java.util.List;
  */
 public interface ArticleRepository extends CrudRepository<Article, Long> {
     List<Article> findAllByOrderByPublicationDateDesc();
+
+    List<Article> findAllByIsPublishedTrueOrderByPublicationDateDesc();
+
+    Integer deleteById(Long id);
 }

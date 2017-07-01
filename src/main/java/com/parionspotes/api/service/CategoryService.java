@@ -31,4 +31,8 @@ public class CategoryService {
     public Category getById(Long id) {
         return categoryRepository.findOne(id);
     }
+
+    public Integer removeById(Long id) {
+        return categoryRepository.removeById(id);
+    }
 }

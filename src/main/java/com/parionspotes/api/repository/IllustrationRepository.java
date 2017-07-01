@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface IllustrationRepository extends CrudRepository<Illustration, Long> {
     List<Illustration> findAll();
+    Illustration findOneById(Long id);
+    Integer removeById(Long id);
 }

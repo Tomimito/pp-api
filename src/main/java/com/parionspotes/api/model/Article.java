@@ -2,9 +2,11 @@ package com.parionspotes.api.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.parionspotes.api.dto.ArticleDto;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,6 +16,20 @@ import java.util.Date;
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Article implements Serializable {
+    public Article(){
+
+    }
+
+    public Article(ArticleDto articleDto) {
+        this.id = articleDto.getId();
+        this.publicationDate = articleDto.getPublicationDate();
+        this.title = articleDto.getTitle();
+        this.author = articleDto.getAuthor();
+        this.content = articleDto.getContent();
+        this.isFront = articleDto.getFront();
+        this.isPublished = articleDto.getPublished();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -21,7 +37,7 @@ public class Article implements Serializable {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "YYYY-MM-dd HH:mm:SS")
-    @Column(name = "publication_date", columnDefinition = "DATETIME")
+    @Column(columnDefinition = "DATETIME")
     private Date publicationDate;
 
     @NotNull
@@ -41,6 +57,12 @@ public class Article implements Serializable {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Illustration illustration;
+
+    @NotNull
+    private Boolean isFront;
+
+    @NotNull
+    private Boolean isPublished;
 
     public Long getId() {
         return id;
@@ -96,5 +118,21 @@ public class Article implements Serializable {
 
     public void setIllustration(Illustration illustration) {
         this.illustration = illustration;
+    }
+
+    public Boolean getFront() {
+        return isFront;
+    }
+
+    public void setFront(Boolean front) {
+        isFront = front;
+    }
+
+    public Boolean getPublished() {
+        return isPublished;
+    }
+
+    public void setPublished(Boolean published) {
+        isPublished = published;
     }
 }

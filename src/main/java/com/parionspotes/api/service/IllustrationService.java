@@ -1,10 +1,14 @@
 package com.parionspotes.api.service;
 
+import com.parionspotes.api.dto.IllustrationDto;
 import com.parionspotes.api.model.Illustration;
 import com.parionspotes.api.repository.IllustrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.sql.Blob;
 import java.util.List;
 
 /**
@@ -24,11 +28,16 @@ public class IllustrationService {
         return illustrationRepository.findAll();
     }
 
-    public Illustration add(Illustration illustration) {
+    public Illustration add(IllustrationDto illustrationDto, Blob file) {
+        Illustration illustration = new Illustration(illustrationDto, file);
         return illustrationRepository.save(illustration);
     }
 
     public Illustration getById(Long id) {
         return illustrationRepository.findOne(id);
+    }
+
+    public Integer removeById(Long id) {
+        return illustrationRepository.removeById(id);
     }
 }

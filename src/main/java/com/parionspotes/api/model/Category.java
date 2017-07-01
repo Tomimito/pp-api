@@ -2,10 +2,7 @@ package com.parionspotes.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -23,6 +20,7 @@ public class Category implements Serializable {
     private String name;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Sport sport;
 
     public Long getId() {

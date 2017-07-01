@@ -1,14 +1,13 @@
 package com.parionspotes.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.parionspotes.api.dto.IllustrationDto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.Serializable;
+import java.sql.Blob;
 
 /**
  * Created by Thomas on 25/06/2017.
@@ -27,10 +26,15 @@ public class Illustration implements Serializable {
     private String credits;
 
     @NotNull
-    private String fileName;
+    @Lob
+    private Blob content;
 
-    @NotNull
-    private File file;
+    public Illustration(IllustrationDto illustrationDto, Blob content) {
+        this.id = illustrationDto.getId();
+        this.credits = illustrationDto.getCredits();
+        this.title = illustrationDto.getTitle();
+        this.content = content;
+    }
 
     public Long getId() {
         return id;
@@ -56,19 +60,11 @@ public class Illustration implements Serializable {
         this.credits = credits;
     }
 
-    public String getFileName() {
-        return fileName;
+    public Blob getContent() {
+        return content;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
+    public void setContent(Blob content) {
+        this.content = content;
     }
 }
