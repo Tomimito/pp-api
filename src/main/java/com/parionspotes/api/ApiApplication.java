@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.web.servlet.DispatcherServlet;
 
 @SpringBootApplication
@@ -16,5 +18,10 @@ public class ApiApplication extends SpringBootServletInitializer {
 
         DispatcherServlet dispatcherServlet = (DispatcherServlet) ctx.getBean("dispatcherServlet");
         dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);
+    }
+
+    @Bean
+    public HibernateJpaSessionFactoryBean sessionFactory(){
+        return new HibernateJpaSessionFactoryBean();
     }
 }

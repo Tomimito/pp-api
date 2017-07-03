@@ -3,8 +3,6 @@ package com.parionspotes.api.controller;
 import com.parionspotes.api.dto.IllustrationDto;
 import com.parionspotes.api.model.Illustration;
 import com.parionspotes.api.service.IllustrationService;
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -13,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.Blob;
 import java.util.List;
 
 @RestController
@@ -32,8 +29,7 @@ public class IllustrationController {
 
     @RequestMapping(value = "/illustrations", method = RequestMethod.POST) public @ResponseBody
     ResponseEntity<?> add(@RequestBody IllustrationDto illustrationDto, @RequestParam MultipartFile file) {
-        Blob blob = (Blob)file;
-        Illustration createdIllustration = illustrationService.add(illustrationDto, blob);
+        Illustration createdIllustration = illustrationService.add(illustrationDto, file);
         return ResponseEntity.ok(createdIllustration);
     }
 

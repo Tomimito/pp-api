@@ -15,6 +15,9 @@ import java.sql.Blob;
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Illustration implements Serializable {
+    public Illustration() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
